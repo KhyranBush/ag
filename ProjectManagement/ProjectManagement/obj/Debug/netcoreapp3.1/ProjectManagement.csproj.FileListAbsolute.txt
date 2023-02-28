@@ -1,0 +1,14 @@
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\bin\Debug\netcoreapp3.1\ProjectManagement.exe
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\bin\Debug\netcoreapp3.1\ProjectManagement.deps.json
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\bin\Debug\netcoreapp3.1\ProjectManagement.runtimeconfig.json
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\bin\Debug\netcoreapp3.1\ProjectManagement.runtimeconfig.dev.json
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\bin\Debug\netcoreapp3.1\ProjectManagement.dll
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\bin\Debug\netcoreapp3.1\ProjectManagement.pdb
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\obj\Debug\netcoreapp3.1\ProjectManagement.csproj.AssemblyReference.cache
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\obj\Debug\netcoreapp3.1\ProjectManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\obj\Debug\netcoreapp3.1\ProjectManagement.AssemblyInfoInputs.cache
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\obj\Debug\netcoreapp3.1\ProjectManagement.AssemblyInfo.cs
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\obj\Debug\netcoreapp3.1\ProjectManagement.csproj.CoreCompileInputs.cache
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\obj\Debug\netcoreapp3.1\ProjectManagement.dll
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\obj\Debug\netcoreapp3.1\ProjectManagement.pdb
+C:\Users\12297\OneDrive\Documents\ProjectManagement\ProjectManagement\obj\Debug\netcoreapp3.1\ProjectManagement.genruntimeconfig.cache

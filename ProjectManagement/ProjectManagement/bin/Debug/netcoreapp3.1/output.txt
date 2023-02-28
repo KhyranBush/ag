@@ -1,0 +1,128 @@
+OOD Database
+Enter your choice.
+1. Employees
+2. Clients
+3. Projects
+9. Quit
+
+Now we deal with employees...
+
+Enter your choice:
+1. Create Employee
+2. Assign Employee
+3. Remove Employee
+4. Find Employee
+5. List all employees
+9. Return to Main Menu
+
+Let's create an employee
+
+Please, enter the first name
+Please, enter the last name
+
+The employee was successfully created.
+
+
+Enter your choice:
+1. Create Employee
+2. Assign Employee
+3. Remove Employee
+4. Find Employee
+5. List all employees
+9. Return to Main Menu
+
+Let's create an employee
+
+Please, enter the first name
+Please, enter the last name
+
+The employee was successfully created.
+
+
+Enter your choice:
+1. Create Employee
+2. Assign Employee
+3. Remove Employee
+4. Find Employee
+5. List all employees
+9. Return to Main Menu
+
+Let's create an employee
+
+Please, enter the first name
+Please, enter the last name
+
+The employee was successfully created.
+
+
+Enter your choice:
+1. Create Employee
+2. Assign Employee
+3. Remove Employee
+4. Find Employee
+5. List all employees
+9. Return to Main Menu
+
+Let's create an employee
+
+Please, enter the first name
+Please, enter the last name
+
+The employee was successfully created.
+
+
+Enter your choice:
+1. Create Employee
+2. Assign Employee
+3. Remove Employee
+4. Find Employee
+5. List all employees
+9. Return to Main Menu
+
+Let's create an employee
+
+Please, enter the first name
+Please, enter the last name
+
+The employee was successfully created.
+
+
+Enter your choice:
+1. Create Employee
+2. Assign Employee
+3. Remove Employee
+4. Find Employee
+5. List all employees
+9. Return to Main Menu
+
+Let's list all the employees
+
+
+*** Employee List ***
+100 - Rodrigo Obando
+101 - William Hutto
+102 - William Shafer
+103 - Kiara Clemons
+104 - Jasmine Hill
+
+
+Enter your choice:
+1. Create Employee
+2. Assign Employee
+3. Remove Employee
+4. Find Employee
+5. List all employees
+9. Return to Main Menu
+
+Returning to Main Menu
+OOD Database
+Enter your choice.
+1. Employees
+2. Clients
+3. Projects
+9. Quit
+
+Quitting
+OOD Database
+Thank for using our database system.
+
