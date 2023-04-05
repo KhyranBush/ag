@@ -1,0 +1,51 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Dungeon</Name>
+    <Description>&lt;No description available&gt;</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Dungeon</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="DungeonGame.csproj" File="DungeonGame.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="BackCommand.cs">BackCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Command.cs">Command.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="CommandWords.cs">CommandWords.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Door.cs">Door.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DropCommand.cs">DropCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Encounters.cs">Encounters.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ExitCommand.cs">ExitCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Game.cs">Game.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="GameWorld.cs">GameWorld.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="GoCommand.cs">GoCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="HelpCommand.cs">HelpCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Hero.cs">Hero.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Interfaces.cs">Interfaces.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="InventoryCommand.cs">InventoryCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Item.cs">Item.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ItemContainer.cs">ItemContainer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="NameCommand.cs">NameCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Notification.cs">Notification.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="NotificationCenter.cs">NotificationCenter.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="OpenCommand.cs">OpenCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Parser.cs">Parser.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="PickupCommand.cs">PickupCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Player.cs">Player.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="QuestCommand.cs">QuestCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="QuitCommand.cs">QuitCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Room.cs">Room.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="SpeakCommand.cs">SpeakCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="StartCommand.cs">StartCommand.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="UseCommand.cs">UseCommand.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
