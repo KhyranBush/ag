@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\khyra\\Downloads\\Dungeon\\DungeonGame.csproj": {}
+    "C:\\GitHub Repo\\Dungeon\\DungeonGame.csproj": {}
   },
   "projects": {
-    "C:\\Users\\khyra\\Downloads\\Dungeon\\DungeonGame.csproj": {
+    "C:\\GitHub Repo\\Dungeon\\DungeonGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\khyra\\Downloads\\Dungeon\\DungeonGame.csproj",
+        "projectUniqueName": "C:\\GitHub Repo\\Dungeon\\DungeonGame.csproj",
         "projectName": "DungeonGame",
-        "projectPath": "C:\\Users\\khyra\\Downloads\\Dungeon\\DungeonGame.csproj",
+        "projectPath": "C:\\GitHub Repo\\Dungeon\\DungeonGame.csproj",
         "packagesPath": "C:\\Users\\khyra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\khyra\\Downloads\\Dungeon\\obj\\",
+        "outputPath": "C:\\GitHub Repo\\Dungeon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

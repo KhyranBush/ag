@@ -1,0 +1,18 @@
+1). Simplify the code so you can understand it!
+
+2). Make weapons Equipable
+
+3). Fix the back command 
+
+4). try to add a function for the decorator pattern 
+
+5). Polish as much as possible
+
+6). Try some challenges!
+	Particularly the teleporter. 
+	Parser and multi word responses
+	wear and use armor 
+	merchant 
+	Make the merchant move around randomly between a fixed number of rooms (this is gonna be tough)
+	battle system
+
