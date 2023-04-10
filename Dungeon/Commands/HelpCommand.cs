@@ -18,7 +18,7 @@ namespace DungeonGame
         }
 
         override
-        public bool execute(Player player)
+        public bool execute(Player player, object gameItem)
         {
             if (this.hasSecondWord())
             {

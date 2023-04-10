@@ -30,7 +30,7 @@
             IGameItems remove(string itemName);
 
             string contents();
-
+            bool contains(IGameItems gameItem);
             string Name { get; set; }
             float Weight { get; set; }
             int Damage { get; set; }
@@ -42,9 +42,7 @@
 
 
             string ToString();
-
-
-
+            IGameItems put(string gitemName);
         }
 
         public interface IGameItems
@@ -56,7 +54,7 @@
             float CarryCapacity { get; set; }
             bool IsUsable { get; set; }
             string Description { get; set; }
-
+            int Health { get; set; }
             void AddDecorator( IGameItems decorator);
             string LongName();
 

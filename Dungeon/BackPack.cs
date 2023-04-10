@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using static DungeonGame.Interfaces;
 
 //This class allows the player to store items like in any rpg
@@ -66,7 +67,17 @@ namespace DungeonGame
 				GItems[Gitem.Name] = Gitem;
 			}
 		}
-		
+		public bool contains(IGameItems GI)
+		{
+			
+            Dictionary<string, IGameItems>.ValueCollection keys = GItems.Values;
+            if (keys.Contains(GI))
+			{
+				return true; 
+			}
+			return false;
+			
+		}
 		
 		public IGameItems remove ( string GItemName)
 		{
@@ -101,6 +112,9 @@ namespace DungeonGame
 			return Name + ", Weight: " + Weight;
 		}
 
-	
+		public IGameItems put(string gitemName)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
