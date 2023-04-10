@@ -1,4 +1,5 @@
 ﻿using System;
+using static DungeonGame.Interfaces;
 
 namespace DungeonGame
 {
@@ -14,8 +15,8 @@ namespace DungeonGame
         public float CarryCapacity = 150f;
         public int experience;
         public int expCap = 50; 
-        public int level = 1; 
-        
+        public int level = 1;
+        public IGameItems EquippedWeapon { get; set; }
 
     }
 }

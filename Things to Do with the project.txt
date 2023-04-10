@@ -15,4 +15,8 @@
 	merchant 
 	Make the merchant move around randomly between a fixed number of rooms (this is gonna be tough)
 	battle system
+	
+	
+	Update 1.1 - Implemented new feature: character weapons handling:
+		Error: Cannot figure out how to equip them!  d
 

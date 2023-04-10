@@ -44,7 +44,7 @@ namespace DungeonGame
 
 		private IGameItems _decorator;
 
-		public IGameItem(): this("Disheveled Waste", 0.0f, 0, 0, 0,"Disheveled waste leftover from the genesis, maybe it could be thrown?", false) 
+		public IGameItem(): this("Disheveled Waste", 0.0f, 1, 1, 1,"Disheveled waste leftover from the genesis, maybe it could be thrown?", false) 
 		{
 		}
 		public IGameItem(string name, float weight, int damage, int health, int armorValue, string description, bool isUsable)
@@ -56,10 +56,10 @@ namespace DungeonGame
 			Health = health;
 			ArmorValue = armorValue;
 			Description = description;
-			//IsUsable = Usable;
+			IsUsable = false;
 
 		}
-
+		
 		public void AddDecorator(IGameItems decorator)
 		{
 			if (_decorator == null)

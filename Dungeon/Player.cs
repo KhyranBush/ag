@@ -49,7 +49,30 @@ namespace DungeonGame
 
         }
        
+        public IGameItems EquipWeapon(string gameItem)
 
+        {
+            
+            BackPack bp = new BackPack();
+        
+            Hero hero = new Hero();
+            IGameItems Gitem = currentRoom.Equip(gameItem);
+            if (inventory.contains(Gitem) && Gitem.IsUsable)
+            { 
+                hero.EquippedWeapon = Gitem;
+                Gitem.Name = Gitem.Name;
+                hero.armorVal += Gitem.ArmorValue;
+                hero.health += Gitem.Health;
+                hero.damage += Gitem.Damage;
+            }
+            else
+            {
+                hero.EquippedWeapon = null;
+                informationMessage("weapon doesnt exist");
+            }
+            
+            return hero.EquippedWeapon;
+        }
         public void showInventory()
 
         {
@@ -168,6 +191,7 @@ namespace DungeonGame
                 this.warningMessage("\nThere is no door on " + direction);
             }
         }
+
         public void exit()
         {
             Dictionary<string, object> userInfo = new Dictionary<string, object>();

@@ -26,3 +26,17 @@ C:\GitHub Repo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.csproj.CoreCompileInp
 C:\GitHub Repo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.dll
 C:\GitHub Repo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.pdb
 C:\GitHub Repo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.genruntimeconfig.cache
+C:\LocalRepo\Dungeon\bin\Debug\netcoreapp3.1\DungeonGame.exe
+C:\LocalRepo\Dungeon\bin\Debug\netcoreapp3.1\DungeonGame.deps.json
+C:\LocalRepo\Dungeon\bin\Debug\netcoreapp3.1\DungeonGame.runtimeconfig.json
+C:\LocalRepo\Dungeon\bin\Debug\netcoreapp3.1\DungeonGame.runtimeconfig.dev.json
+C:\LocalRepo\Dungeon\bin\Debug\netcoreapp3.1\DungeonGame.dll
+C:\LocalRepo\Dungeon\bin\Debug\netcoreapp3.1\DungeonGame.pdb
+C:\LocalRepo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.csproj.AssemblyReference.cache
+C:\LocalRepo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\LocalRepo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.AssemblyInfoInputs.cache
+C:\LocalRepo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.AssemblyInfo.cs
+C:\LocalRepo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.csproj.CoreCompileInputs.cache
+C:\LocalRepo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.dll
+C:\LocalRepo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.pdb
+C:\LocalRepo\Dungeon\obj\Debug\netcoreapp3.1\DungeonGame.genruntimeconfig.cache
