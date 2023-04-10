@@ -42,7 +42,7 @@
 
 
             string ToString();
-            IGameItems put(string gitemName);
+           // IGameItems put(string gitemName);
         }
 
         public interface IGameItems

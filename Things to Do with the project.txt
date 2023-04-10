@@ -18,5 +18,7 @@
 	
 	
 	Update 1.1 - Implemented new feature: character weapons handling:
-		Error: Cannot figure out how to equip them!  d
+		Error: Cannot figure out how to equip them!  
+	Update 1.12 Currently bug fixing, It may work now but i am not sure
+	implement a equiped items command So we can see whats going on!
 

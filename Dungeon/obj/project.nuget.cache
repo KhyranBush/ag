@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8v/TcIUkHeu4kCJ0TJkfat+dWRB82Bri0DYQ4Sh/A3XQho5wemWA+dOYXSpmygcRIR06a5Nxy5yRXBsxWm6zOA==",
+  "dgSpecHash": "J2j2X01iiir6QZ0P3/yEP0E4w8WGd4UiidtsQc1cCbg9372RTu3wS+VlGZTPUEWMubxy7dnQDZZVNhN9qrPJWg==",
   "success": true,
-  "projectFilePath": "C:\\LocalRepo\\Dungeon\\DungeonGame.csproj",
+  "projectFilePath": "C:\\GitHub Repo\\Dungeon\\DungeonGame.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -329,10 +329,7 @@ namespace DungeonGame
         {
             return GItemContainer.remove(GItemName);
         }
-        public IGameItems Equip(string GitemName)
-        {
-             return GItemContainer.put(GitemName);
-        }
+        
 
        
 

@@ -7,8 +7,6 @@ namespace DungeonGame
 {
     public class EquipWeaponCommand : Command
     {
-   
-
         public EquipWeaponCommand() : base()
         {
             this.name = "Equip";
@@ -18,18 +16,15 @@ namespace DungeonGame
         {
             if (this.hasSecondWord())
             {
-                player.EquipWeapon(string gameItem);
+                player.EquipWeapon(this.secondWord);
 
             }
             else
             {
-              
-                player.EquipWeapon(string gameItem);
+                player.EquipWeapon(this.secondWord);
             }
             return false;
         }
-
-       
     }
-
 }
+

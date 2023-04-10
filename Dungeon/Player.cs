@@ -49,29 +49,30 @@ namespace DungeonGame
 
         }
        
-        public IGameItems EquipWeapon(string gameItem)
+        public void EquipWeapon(string gameItem)
 
         {
-            
+            IGameItems GItem = currentRoom.pickup(gameItem);
             BackPack bp = new BackPack();
+            
         
             Hero hero = new Hero();
-            IGameItems Gitem = currentRoom.Equip(gameItem);
-            if (inventory.contains(Gitem) && Gitem.IsUsable)
+            
+            if (inventory.contains(GItem) == true && GItem.IsUsable != false)
             { 
-                hero.EquippedWeapon = Gitem;
-                Gitem.Name = Gitem.Name;
-                hero.armorVal += Gitem.ArmorValue;
-                hero.health += Gitem.Health;
-                hero.damage += Gitem.Damage;
+                hero.EquippedWeapon = GItem;
+                GItem.Name = GItem.Name;
+                hero.armorVal += GItem.ArmorValue;
+                hero.health += GItem.Health;
+                hero.damage += GItem.Damage;
             }
-            else
+            else if(!inventory.contains(GItem) == false) 
             {
                 hero.EquippedWeapon = null;
                 informationMessage("weapon doesnt exist");
             }
-            
-            return hero.EquippedWeapon;
+
+           
         }
         public void showInventory()
 

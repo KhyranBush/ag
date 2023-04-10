@@ -9,7 +9,7 @@ namespace DungeonGame
             this.name = "Use";
         }
         override
-        public bool execute(Player player, object gameItem)
+        public bool execute(Player player)
         {
             if (this.hasSecondWord())
             {
