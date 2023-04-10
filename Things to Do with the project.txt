@@ -18,5 +18,5 @@
 	
 	
 	Update 1.1 - Implemented new feature: character weapons handling:
-		Error: Cannot figure out how to equip them!
+		Error: Cannot figure out how to equip them!  d
 
