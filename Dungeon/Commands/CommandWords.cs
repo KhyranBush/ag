@@ -11,7 +11,7 @@ namespace DungeonGame
     public class CommandWords
     {
         Dictionary<string, Command> commands;
-        private static Command[] commandArray = { new GoCommand(), new QuitCommand(), new SpeakCommand(), new StartCommand(),new NameCommand(), new BackCommand(), new OpenCommand(), new PickupCommand(), new InventoryCommand(), new DropCommand(), new QuestCommand(), new EquipWeaponCommand() };
+        private static Command[] commandArray = { new GoCommand(), new QuitCommand(), new SpeakCommand(), new StartCommand(),new NameCommand(), new BackCommand(), new OpenCommand(), new PickupCommand(), new InventoryCommand(), new DropCommand(), new QuestCommand(), new EquipWeaponCommand(), new showStatsCommand() };
 
         public CommandWords() : this(commandArray)
         {

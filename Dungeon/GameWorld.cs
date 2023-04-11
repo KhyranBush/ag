@@ -142,7 +142,7 @@ namespace DungeonGame
 
 			IGameItems gSword = new IGameItem("GreatSword", 10f,1,2,3,"A massive blade with rust laden on its shaft, shows sign of frequent use", true);
 			room3.drop(gSword);
-            IGameItems gBow = new IGameItem("HuntingBow", 3f, 2, 1, 1, "A basic hunting bow, with a green luminescence irradiating from its string", true);
+            IGameItems gBow = new IGameItem("HuntingBow", 3f, 10000, 100, 1, "A basic hunting bow, with a green luminescence irradiating from its string", true);
             room2.drop(gBow);
             IGameItems gStaff = new IGameItem("ApprenticeStaff", 2f, 3, 1, 0, "A Staff that irradiates an eerie Gold luminescence, mana splurges from its mysically cracked orb", true);
             room4.drop(gSword);

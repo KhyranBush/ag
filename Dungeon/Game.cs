@@ -19,7 +19,8 @@ namespace DungeonGame
 
 		public Game()
 		{
-			playing = false;
+          
+            playing = false;
 			parser = new Parser(new CommandWords());
 			player = new Player(GameWorld.Instance.Lobby);
 			Dictionary<string, object> userInfo = new Dictionary<string, object>();
@@ -103,8 +104,9 @@ namespace DungeonGame
 		{
 			player.informationMessage("A terrible foe appears! ");
 		}
-
+		
 		
 
 	}
 }
+ 

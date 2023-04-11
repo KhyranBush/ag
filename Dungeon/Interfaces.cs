@@ -30,7 +30,7 @@
             IGameItems remove(string itemName);
 
             string contents();
-            bool contains(IGameItems gameItem);
+            IGameItems getItems(string Gitem);
             string Name { get; set; }
             float Weight { get; set; }
             int Damage { get; set; }

@@ -17,7 +17,6 @@ namespace DungeonGame
             if (this.hasSecondWord())
             {
                 player.EquipWeapon(this.secondWord);
-
             }
             else
             {
@@ -25,6 +24,7 @@ namespace DungeonGame
             }
             return false;
         }
+     
     }
 }
 

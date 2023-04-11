@@ -67,16 +67,19 @@ namespace DungeonGame
 				GItems[Gitem.Name] = Gitem;
 			}
 		}
-		public bool contains(IGameItems GI)
+		public IGameItems getItems(string Gitem)
 		{
-			
-            Dictionary<string, IGameItems>.ValueCollection keys = GItems.Values;
-            if (keys.Contains(GI))
+            Dictionary<string, IGameItems>.KeyCollection keys = GItems.Keys;
+
+			if (keys.Contains(Gitem))
 			{
-				return true; 
+				return GItems[Gitem];
 			}
-			return false;
-			
+			else
+			{
+                throw new ArgumentException($"Weapon {Gitem} not found");
+            }
+		
 		}
 		
 		public IGameItems remove ( string GItemName)
@@ -116,5 +119,7 @@ namespace DungeonGame
 		{
 			throw new NotImplementedException();
 		}
+
+		
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using static DungeonGame.Enemies;
 using static DungeonGame.Interfaces;
 
 namespace DungeonGame
@@ -55,7 +56,7 @@ namespace DungeonGame
         
         public void PlayerWillSayWord(Notification notification)
         {
-            Hero hero = new Hero();
+            
             Player player = (Player)notification.Object;
             if(player.currentRoom == Container)
             {
@@ -71,8 +72,8 @@ namespace DungeonGame
                     {
                         player.informationMessage("You said the wrong word!");
                         player.warningMessage("\n\nYou took" + 5 + "damage");
-                        hero.health -= 5;
-                        player.warningMessage("\nHealth point" + hero.health);
+                        player.health -= 5;
+                        player.warningMessage("\nHealth point" + player.health);
                     }
                 }
             }
@@ -149,7 +150,7 @@ namespace DungeonGame
 
         public void PlayerWillSayWord(Notification notification)
         {
-            Hero hero = new Hero();
+         
             Player player = (Player)notification.Object;
             if (player.currentRoom == Container)
             {
@@ -165,8 +166,8 @@ namespace DungeonGame
                     {
                         player.informationMessage("You said the wrong word!");
                         player.warningMessage("\n\nYou took" + 5 + "damage");
-                        hero.health -= 5;
-                        player.warningMessage("\nHealth point" + hero.health);
+                        player.health -= 5;
+                        player.warningMessage("\nHealth point" + player.health);
                     }
                 }
             }
@@ -177,6 +178,7 @@ namespace DungeonGame
 
     public class Battle : IRoomDelagate
     {
+       
         public Room Container { get; set; }
         public Door getExit(string exitName)
         {
@@ -185,7 +187,7 @@ namespace DungeonGame
         }
         public string getExits()
         {
-            Encounters.FirstEncounter();
+            Enemies.FirstEncounter();
 
             return Container.getExits(this) + "\n~ Battle complete. The exits are shown now~\n";
             
@@ -209,7 +211,7 @@ namespace DungeonGame
         }
         public string getExits()
         {
-            Encounters.SecondEncounter();
+            Enemies.SecondEncounter();
 
             return Container.getExits(this) + "\n~ Battle complete. The exits are shown now~\n";
 
@@ -233,7 +235,7 @@ namespace DungeonGame
         }
         public string getExits()
         {
-            Encounters.ThirdEncounter();
+            Enemies.ThirdEncounter();
 
             return Container.getExits(this) + "\n~ Battle complete. The exits are shown now~\n";
 
@@ -257,7 +259,7 @@ namespace DungeonGame
         }
         public string getExits()
         {
-            Encounters.FinalEncounter();
+            Enemies.FinalEncounter();
 
             return Container.getExits(this) + "\n~ Battle complete. The exits are shown now~\n";
 

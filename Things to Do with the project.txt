@@ -1,8 +1,8 @@
 1). Simplify the code so you can understand it!
 
-2). Make weapons Equipable
+2). Make weapons Equipable (works as of patch 1.2)
 
-3). Fix the back command 
+3). Fix the back command (works as of patch 1.2)
 
 4). try to add a function for the decorator pattern 
 
@@ -21,4 +21,21 @@
 		Error: Cannot figure out how to equip them!  
 	Update 1.12 Currently bug fixing, It may work now but i am not sure
 	implement a equiped items command So we can see whats going on!
+	Major Update patch 1.2 
+	Huge game fixes in code readability and cohesion 
+	Fixed many problems with incohesive code
+	No longer a Hero class
+	encounters does not handle enemies and players together anymore
+	Players does everything a player should do
+	
+	To do:
+		Make the new enemy module initialize the combat sequence when an npc is detected
+		Add a merchant and make sure the enemies are dropping coins!
+		Make sure the character is leveling up after a fight
+		Fix trap rooms 
+		Finally add the teleporter!
+
+
+
+	
 

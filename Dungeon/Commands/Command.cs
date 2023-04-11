@@ -26,7 +26,7 @@ namespace DungeonGame
         override
         public string ToString()
         {
-            return name + (hasSecondWord()? " " + secondWord : "");
+            return name + (hasSecondWord() ? " " + secondWord : "");
         }
 
         public abstract bool execute(Player player);
