@@ -17,6 +17,7 @@ namespace DungeonGame
         public int experience;
         public int expCap = 50;
         public int level = 1;
+        
         public IGameItems EquippedWeapon { get; set; }
 
 
@@ -40,10 +41,10 @@ namespace DungeonGame
 
         private IGameItemsContainer inventory;
 
-        public Player(Room room)
+        public Player(Room room) 
         {
 
-            _currentRoom = room;
+          
             Name = "";
             inventory = new BackPack();
 
@@ -82,6 +83,32 @@ namespace DungeonGame
             }
 
 
+        }
+        public void UnequipWeapon(string gameItem)
+        {
+            try
+            {
+                IGameItems GItem = inventory.getItems(gameItem);
+                EquippedWeapon = GItem;
+                armorVal -= GItem.ArmorValue;
+                health -= GItem.Health;
+                damage -= GItem.Damage;
+                inventory.put(GItem);
+                informationMessage(GItem + "Has Been unEquiped!");
+                
+            }
+            catch (ArgumentException ex)
+            {
+
+                EquippedWeapon = null;
+                informationMessage(ex.Message + "\nThere are no weapons with the name entered please try again\n");
+            }
+
+
+        }
+        public void AttackAnEnemy(string Enemy)
+        {
+            
         }
         public void showStats()
         {

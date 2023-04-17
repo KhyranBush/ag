@@ -1,4 +1,7 @@
-﻿using static DungeonGame.Interfaces;
+﻿using System.Dynamic;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+using static DungeonGame.Interfaces;
 
 
 
@@ -7,7 +10,7 @@ namespace DungeonGame
 	public class GameWorld
 	{
 		static private GameWorld _instance = null;
-		
+		private Player Player;
 		static public GameWorld Instance
 		{
 			get
@@ -40,10 +43,16 @@ namespace DungeonGame
 		}
 		private GameWorld()
 		{
+				
 			createWorld();
 			NotificationCenter.Instance.addObserver("EndGame", EndGame);
 		}
-
+		public void SetPlayer(Player player)
+		{
+			this.Player = player;
+		}
+		
+		
 		public void EndGame(Notification notification)
 		{
 			Player player = (Player)notification.Object;
@@ -115,25 +124,26 @@ namespace DungeonGame
 			//monsters to certain rooms and make room 16 the ending room. 
 
 			//Trap/Puzzle rooms
-			EntranceToFloorTwo ETF2 = new EntranceToFloorTwo();
+			Room.EntranceToFloorTwo ETF2 = new Room.EntranceToFloorTwo();
 			room5.Delegate = ETF2;
 
-			TrapRoom tRoom = new TrapRoom();
+			Room.TrapRoom tRoom = new Room.TrapRoom();
 			room7.Delegate = tRoom;
 
-			TrapRoomTwo tRoomTwo = new TrapRoomTwo();
+			Room.TrapRoomTwo tRoomTwo = new Room.TrapRoomTwo();
 			room10.Delegate = tRoomTwo;
 
 			//This is the room you need to go to end the game and win
-			EndRoom eRoom = new EndRoom();
+			Room.EndRoom eRoom = new Room.EndRoom();
 			room16.Delegate = eRoom;
 
-			//These are rooms where battle encounters would start.
-			//Not all monsters are created equal
-			Battle bRoom = new Battle();
-			room3.Delegate = bRoom;
-			
+            //These are rooms where battle encounters would start.
+            //Not all monsters are created equal
+            Room battleTwoRoom = new Room.battleTwo();
+         
+            room3.Delegate = (IRoomDelagate)battleTwoRoom;
 
+			
 
 
 			//This is where we created GItemss

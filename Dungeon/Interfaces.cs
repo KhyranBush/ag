@@ -13,9 +13,16 @@
         public interface IRoomDelagate
         {
             //Software design pattern: Delegates
-            Room Container { get; set; }
+             Room Container { get; set; }
             Door getExit(string exitName);
             string getExits();
+        }
+        public interface IEnemyDelagate
+        {
+            //Software design pattern: Delegates
+            Room EnemyContainer { get; set; }
+            Enemies getEnemy(string exitName);
+            string getEnemies();
         }
         public interface IOCState
         {

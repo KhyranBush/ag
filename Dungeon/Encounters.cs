@@ -12,7 +12,7 @@ using System.Xml.XPath;namespace DungeonGame{
             this.enemy = enemy;
         }
         public bool IsDefeated { get; set; }     
-            public static void PlayerCombat(Player player, Enemies enemy)
+            public  void PlayerCombat(Player player, Enemies enemy)
             {
             Game game = new Game();
            
@@ -39,7 +39,7 @@ using System.Xml.XPath;namespace DungeonGame{
                 while (defeat == false)
                 {
 
-                    while (h > 0 && player.health > 0)
+                    while (h > 0 && this.player.health > 0)
                     {
 
                         defeat = false;
@@ -53,16 +53,16 @@ using System.Xml.XPath;namespace DungeonGame{
                         Console.WriteLine("|      ♥ Heal ♥      |");
                         Console.WriteLine("|      ? Run ?       |");
                         Console.WriteLine("=====================");
-                        Console.WriteLine("Potions: " + player.potion + " Health: " + player.health + " Health: " + player.damage + player.EquippedWeapon.Damage);
+                        Console.WriteLine("Potions: " + this.player.potion + " Health: " + this.player.health + " Health: " + this.player.damage + this.player.EquippedWeapon.Damage);
                         string input = Console.ReadLine();
                         if (input.ToLower() == "A" || input.ToLower() == "Attack" || input.ToLower() == "a")
                         {
                             //Attack
                             Console.WriteLine("Your enemy is struck by your awesome power! The " + n + " strikes you back.");
-                            int damage = p - player.armorVal;
+                            int damage = p - this.player.armorVal;
                             if (damage < 0)
                                 damage = 0;
-                            int attack = player.damage - p;
+                            int attack = this.player.damage - p;
                             Console.WriteLine("You lose " + damage + "  health and you dealt " + attack + " damage");
                             player.health -= damage;
                             h -= attack;
@@ -71,21 +71,21 @@ using System.Xml.XPath;namespace DungeonGame{
                         {
                             //Defend
                             Console.WriteLine("You raise your guard and hope to live. " + n + " strikes you and deals less damage.");
-                            int damage = (p / 4) - player.armorVal;
+                            int damage = (p / 4) - this.player.armorVal;
                             if (damage < 0)
                             {
                                 damage = 0;
                             }
-                            int attack = rand.Next(1, player.damage) / 2;
+                            int attack = rand.Next(1, this.player.damage) / 2;
                             Console.WriteLine("You lose " + damage + "  health and you dealt " + attack + " damage");
-                            player.health -= damage;
+                            this.player.health -= damage;
                             h -= attack;
                         }
 
                         else if (input.ToLower() == "H" || input.ToLower() == "Heal" || input.ToLower() == "h")
                         {
                             //Heal
-                            if (player.potion == 0)
+                            if (this.player.potion == 0)
                             {
                                 Console.WriteLine("You reach for a healing rune but it seems you ran out.");
                                 int damage = p - player.armorVal;
@@ -99,9 +99,9 @@ using System.Xml.XPath;namespace DungeonGame{
                             {
                                 int potVal = 5;
                                 Console.WriteLine("You pulled out a healing rune and crush it in your hand.. You gained " + potVal + "health");
-                                player.health += potVal;
+                                this.player.health += potVal;
                                 Console.WriteLine("While healing " + n + " attacks you, dealing.");
-                                int damage = (p / 2) - player.armorVal;
+                                int damage = (p / 2) - this.player.armorVal;
                                 if (damage < 0)
                                 {
                                     damage = 0;
@@ -121,7 +121,7 @@ using System.Xml.XPath;namespace DungeonGame{
                         }
 
                     }
-                    while (player.health <= 0)
+                    while (this.player.health <= 0)
                     {
 
 
@@ -141,16 +141,16 @@ using System.Xml.XPath;namespace DungeonGame{
 
 
 
-                    player.coins = currency;
-                    player.experience += xp;
+                    this.player.coins = currency;
+                    this.player.experience += xp;
                     defeat = true;
-                    player.coins += currency;
+                    this.player.coins += currency;
                     if (player.experience >= player.expCap)
                     {
                         //player = (Player)notification.Object;
-                        player.level += 1;
-                        player.expCap += 50;
-                        player.coins += currency;
+                        this.player.level += 1;
+                        this.player.expCap += 50;
+                        this.player.coins += currency;
                         Console.WriteLine("\n\nYou have now leveled up, you are now level:" + player.level + "\nyour maxiumum exp has went up to " + player.expCap);
                     }
 
