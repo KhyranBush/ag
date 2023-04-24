@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using static DungeonGame.Interfaces;
+using System.Numerics;
 
 namespace DungeonGame
 {
@@ -17,7 +18,7 @@ namespace DungeonGame
         public int experience;
         public int expCap = 50;
         public int level = 1;
-        
+        Enemies enemy; 
         public IGameItems EquippedWeapon { get; set; }
 
 
@@ -109,7 +110,62 @@ namespace DungeonGame
         public void AttackAnEnemy(string Enemy)
         {
             
+            Enemies CombatEnemy = this._currentRoom.GetEnemy(Enemy);
+            
+
+
+            if (CombatEnemy != null && CombatEnemy.IsTheEnemyAliveOrNot == true)
+            {
+                int power = CombatEnemy.Power;
+                int Hlth = CombatEnemy.Health;
+                string name = Enemy;
+               
+                warningMessage(name + "is struck by your awesome power! The " + name + " strikes you back.");
+                int damage = power - armorVal;
+                if (damage < 0)
+                    damage = 0;
+                int attack = damage - power;
+                warningMessage("You lose " + damage + "  health and you dealt " + attack + " damage");
+                health -= damage;
+                Hlth -= attack;
+                if(CombatEnemy.Health == 0)
+                {
+                     CombatEnemy.IsTheEnemyAliveOrNot = false;
+                }
+            }
+            else if(CombatEnemy!=null && CombatEnemy.IsTheEnemyAliveOrNot == false)
+            {
+             
+                informationMessage("You have defeated" + Enemy + "You have gained\n" + CombatEnemy.Experience + "Experience\n" + CombatEnemy.Coins + "Coins\n");
+                coins += CombatEnemy.Coins;
+                experience += CombatEnemy.Experience;
+                if(experience > expCap)
+                {
+                    LevelUp();
+
+                }
+            }
+            else if(CombatEnemy == null)
+            {
+                informationMessage(CombatEnemy + "Does not exist!");
+            }
+            
+            
         }
+        public void LevelUp()
+        {
+            if (experience > expCap)
+            {
+                informationMessage("You have leveled up!");
+                expCap += 50;
+                health += 1;
+                damage += 1;
+                armorVal += 1;
+                coins += 10;
+
+            }
+        }
+       
         public void showStats()
         {
             //Hero hero = new Hero();

@@ -11,39 +11,10 @@ namespace DungeonGame
     {
         private Dictionary<string, Door> exits;
         private string _tag;
-        
+        private Dictionary<string, Enemies> _enemies;
 
-
-
-
-        public string tag
-        {
-            get
-            {
-                return _tag;
-            }
-            set
-            {
-                _tag = value;
-            }
-        }
         private IRoomDelagate _delegate;
-        private IEnemyDelagate _Enemydelegate;
-        public IEnemyDelagate EnemyDelegate
-        {
-            get
-            {
-                return _Enemydelegate;
-            }
-            set
-            {
-                _Enemydelegate = value;
-                if (_Enemydelegate != null)
-                {
-                    _Enemydelegate.EnemyContainer = this;
-                }
-            }
-        }
+
         public IRoomDelagate Delegate
         {
             get
@@ -59,33 +30,48 @@ namespace DungeonGame
                 }
             }
         }
-        //End of Delegate section
-       
-
-        private IGameItemsContainer GItemContainer;
-
-
-       public Room() : this("No Tag")
-       {
-
-       }
-        
-        public Room(string tag = "No Tag" ) 
+        public Room() : this("No Tag")
         {
-            enemies = new Dictionary<string, Enemies>();
+        }
+
+        public Room(string tag = "No Tag")
+        {
+            _enemies = new Dictionary<string, Enemies>();
+
             exits = new Dictionary<string, Door>();
             this.tag = tag;
             _delegate = null;
             GItemContainer = new BackPack();
-            
         }
 
-        
+
+
+        public string tag
+        {
+            get
+            {
+                return _tag;
+            }
+            set
+            {
+                _tag = value;
+            }
+        }
+
+        //End of Delegate section
+        //beginning of Items interfaces
+
+        private IGameItemsContainer GItemContainer;
+
+
+
+        //public string Tag { get; set; }
+
 
         public void drop(IGameItems GItem)
         {
             GItemContainer.put(GItem);
-          
+
         }
 
 
@@ -123,7 +109,7 @@ namespace DungeonGame
 
         public Door getExit(string exitName, IRoomDelagate rDelegate)
         {
-            if (rDelegate == EnemyDelegate)
+            if (rDelegate == Delegate)
             {
                 Door door = null;
                 exits.TryGetValue(exitName, out door);
@@ -164,104 +150,16 @@ namespace DungeonGame
                 return "???";
             }
         }
-        private Dictionary<string, Enemies> enemies;
-       
-        public void AddEnemy(string enemyName, Enemies enemy)
-        {
-            enemies[enemyName] = enemy;
-        }
 
-        public Enemies GetEnemy(string enemyName)
-        {
-            if (_Enemydelegate != null)
-            {
-                return _Enemydelegate.getEnemy(enemyName);
-            }
-            else
-            {
-                return GetEnemy(enemyName, null);
-            }
-        }
-
-        public Enemies GetEnemy(string enemyName, IEnemyDelagate eDelegate)
-        {
-            if (eDelegate == EnemyDelegate)
-            {
-                Enemies enemy = null;
-                enemies.TryGetValue(enemyName, out enemy);
-                return enemy;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public string GetEnemies()
-        {
-            if (_Enemydelegate != null)
-            {
-                return _Enemydelegate.getEnemies();
-            }
-            else
-            {
-                return getEnemies(null,null);
-            }                                        
-        }
-        public string getEnemies(IEnemyDelagate eDelegate,string currentRoom)
-        {
-            string enemyNames = " ";
-           
-            if (eDelegate == EnemyDelegate)
-            {
-
-                if (enemies.ContainsKey(currentRoom))
-                {
-                    Enemies enemiesInRoom = enemies[currentRoom];
-                    Dictionary<string, Enemies>.KeyCollection keys = enemiesInRoom.Keys;
-                    foreach (string enemyName in enemies.Keys)
-                    {
-                        enemyNames += " " + enemyName;
-                    }
-                    return enemyNames;
-                }
-                else
-                {
-                    return "No enemies in this room.";
-                }
-            }
-            else
-            {
-                return "???";
-            }
-        }
 
         public string description()
         {
             return "Your current location is " + this.tag + "\n" + this.getExits() + "\n" + this.getGItems();
         }
 
-        public class EndRoom : IRoomDelagate
-        {
 
-            public Room Container { get; set; }
 
-            public Door getExit(string exitName)
-            {
-                return null;
-            }
 
-            public EndRoom()
-            {
-
-            }
-
-            public string getExits()
-            {
-                return Container.getExits(this) + "\n*** You Win! ***" + "\nYou can type 'Quit' to leave.";
-            }
-
-        }
         //Traprooms
 
         public class TrapRoom : IRoomDelagate
@@ -409,36 +307,108 @@ namespace DungeonGame
             }
 
         }
-       
-
-
-        public class Battle :Room, IRoomDelagate
+        //------------------------------------------------Enemies and Battles--------------------------------
+        private Enemies Enemy;
+        public void setEnemy(Enemies _enemy)
         {
-            
+            this.Enemy = _enemy;
+        }
+        //private Dictionary<string, Enemies> enemies;
+        private IEnemyDelagate _Enemydelegate;
+        public IEnemyDelagate EnemyDelegate
+        {
+            get
+            {
+                return _Enemydelegate;
+            }
+            set
+            {
+                _Enemydelegate = value;
+                if (_Enemydelegate != null)
+                {
+                    _Enemydelegate.EnemyContainer = Enemy;
+                }
+            }
+        }
+        public void AddEnemy(string enemyName, Enemies enemy)//Add a room assignment?
+        {
+            _enemies[enemyName] = enemy;
+        }
 
+        public Enemies GetEnemy(string enemyName)
+        {
+            if (_Enemydelegate != null)
+            {
+                return _Enemydelegate.getEnemy(enemyName);
+            }
+            else
+            {
+                return GetEnemy(enemyName, null);
+            }
+        }
+
+        public Enemies GetEnemy(string enemyName, IEnemyDelagate eDelegate)
+        {
+            if (eDelegate == EnemyDelegate)
+            {
+                Enemies enemy = null;
+                _enemies.TryGetValue(enemyName, out enemy);
+                return enemy;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string GetEnemies()
+        {
+            if (_Enemydelegate != null)
+            {
+                return _Enemydelegate.getEnemies();
+            }
+            else
+            {
+                return getEnemies(null);
+            }
+        }
+        public string getEnemies(IEnemyDelagate eDelegate)
+        {
+            if (eDelegate == EnemyDelegate)
+            {
+                string enemyNames = "Enemies in room:";
+                Dictionary<string, Enemies>.KeyCollection keys = _enemies.Keys;
+                foreach (string enemyName in keys)
+                {
+                    enemyNames += " " + enemyName;
+                }
+                return enemyNames;
+            }
+            else
+            {
+                return "???";
+            }
+        }
+
+        public class Battle : Room, IRoomDelagate
+        {
+
+            //Having problems with everything being null
             public Room Container { get; set; }
-            public Enemies EnemyContainer { get; set; }
+            public R EnemyContainer { get; set; }
+            public Enemies getEnemy(string enemyName)
+            {
+                return EnemyContainer.GetEnemy(enemyName);
+            }
+
             public Door getExit(string exitName)
             {
 
                 return Container.getExit(exitName, this);
             }
-            public string getExits()
-            {
-                Console.WriteLine("\nIn far corner of the room the light effigies collide forming a spirit irradiating the same luminescent glow present on the walls");
-                Console.WriteLine("\nAs it animates, it notices your prescence and transforms in color from a blueish hue to a deep burning crimson");
-                Console.WriteLine("\nThe spirit speaks with its metallic and disturbing voice that slowly drones in and out\n Your death marks the end of another foolish ascension\n" +
-                                    "prepare to meet the Loa once more impudent Ascender!");
-                Console.WriteLine("\nThis is your first trial young hero, Destroy or be Destroyed.. KIll or be Killed, If you wish to proceed, attack the enemy!");
-                
-                Enemies enemy1 = new Enemies(Container, "Ethereal Spirit Soldier: Rohin the first Ascender", 200, 5, 10, 4, 10, false);
-
-                enemies.Add("Rohin", enemy1);
 
 
-                return Container.getExits(this) + "\n~ Battle complete. The exits are shown now~\n";
 
-            }
             public void PlayerDidSayWord(Notification notification)
             {
                 Player player = (Player)notification.Object;
@@ -453,7 +423,6 @@ namespace DungeonGame
 
         public class battleTwo : Room, IRoomDelagate
         {
-            
 
             public Room Container { get; set; }
             public Door getExit(string exitName)
@@ -467,8 +436,7 @@ namespace DungeonGame
                 Console.WriteLine("\nIt assembles as it looks in your direction and mystic black mist flows from its helm ....");
                 Console.WriteLine("\nIt rusheds toward you filled with the intent to destroy, Now is the time for action, fight young hero!");
                 Console.ReadKey();
-                Enemies enemy2 = new Enemies(Container, "Skeleton man 2.0", 7, 10, 11, 100, 10, false);
-                enemies.Add("Skeleton", enemy2);
+
 
 
 
@@ -484,9 +452,9 @@ namespace DungeonGame
             }
         }
 
-        public class battleThree :Room,  IRoomDelagate
+        public class battleThree : Room, IRoomDelagate
         {
-           
+
 
             public Room Container { get; set; }
             public Door getExit(string exitName)
@@ -500,10 +468,9 @@ namespace DungeonGame
                 Console.WriteLine("\nThis is a brute known only for destruction and violence!");
                 Console.WriteLine("\nVictory is slim and death is almost certain as you fight the...");
                 Console.ReadKey();
-                Enemies enemy3 = new Enemies(Container,"Rancor", 10, 10, 10, 200, 10, false);
-                enemies.Add("Rancor", enemy3);
-                
-           
+
+
+
 
                 return Container.getExits(this) + "\n~ Battle complete. The exits are shown now~\n";
 
@@ -517,9 +484,9 @@ namespace DungeonGame
             }
         }
 
-        public class finalBattle :Room, IRoomDelagate
+        public class finalBattle : Room, IRoomDelagate
         {
-            
+
 
             public Room Container { get; set; }
             public Door getExit(string exitName)
@@ -534,8 +501,7 @@ namespace DungeonGame
                 Console.WriteLine("\nDeath is almost certainly assured");
                 Console.ReadKey();
 
-                Enemies enemy4 = new Enemies(Container, "Akuma, The Raging Demon!", 20, 30, 20, 200, 20, false);
-                enemies.Add("Akuma", enemy4);
+
 
                 return Container.getExits(this) + "\n~ Battle complete. The exits are shown now~\n";
 
@@ -548,10 +514,58 @@ namespace DungeonGame
                 }
             }
         }
-        
-    }
-    
+        public class EndRoom : IRoomDelagate
+        {
 
-    
-    
+            public Room Container { get; set; }
+
+            public Door getExit(string exitName)
+            {
+                return null;
+            }
+
+            public EndRoom()
+            {
+
+            }
+
+            public string getExits()
+            {
+                return Container.getExits(this) + "\n*** You Win! ***" + "\nYou can type 'Quit' to leave.";
+            }
+            //----------------------------Room Message Types----------------------------------------------
+            public void outputMessage(string message)
+            {
+                Console.WriteLine(message);
+            }
+
+            public void coloredMessage(string message, ConsoleColor color)
+            {
+                ConsoleColor oldColor = Console.ForegroundColor;
+                Console.ForegroundColor = color;
+                outputMessage(message);
+                Console.ForegroundColor = oldColor;
+            }
+
+            public void debugMessage(string message)
+            {
+                coloredMessage(message, ConsoleColor.DarkRed);
+            }
+
+            public void warningMessage(string message)
+            {
+                coloredMessage(message, ConsoleColor.Red);
+            }
+
+            public void informationMessage(string message)
+            {
+                coloredMessage(message, ConsoleColor.Yellow);
+            }
+
+        }
+
+
+
+
+    }
 }

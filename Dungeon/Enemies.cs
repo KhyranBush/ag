@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Runtime.CompilerServices;
 using System.Text;
+using static DungeonGame.Interfaces;
 
 namespace DungeonGame
 {
@@ -17,11 +18,11 @@ namespace DungeonGame
         public int Experience;
         public bool IsTheEnemyAliveOrNot;
         public Player Player;
-        private Room RoomEnemyIsLocated;
+        //private Room RoomEnemyIsLocated;
 
         public Dictionary<string, Enemies>.KeyCollection Keys { get; internal set; }
 
-        public Enemies(Room room, string name, int power, int damage, int hlth, int exp, int coins, bool IsDefeated)
+        public Enemies( string name, int power, int damage, int hlth, int exp, int coins, bool IsDefeated)
         {
             enemies = new Dictionary<string, Enemies>();
             name = Name;
@@ -31,10 +32,11 @@ namespace DungeonGame
             hlth = Health;
             exp = Experience;
             IsDefeated = IsTheEnemyAliveOrNot;
-            room = RoomEnemyIsLocated;
+      
         }
-
+        
        
 
+        
     }
 }

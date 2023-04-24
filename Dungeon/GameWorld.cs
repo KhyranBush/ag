@@ -11,6 +11,7 @@ namespace DungeonGame
 	{
 		static private GameWorld _instance = null;
 		private Player Player;
+		private Enemies Enemies;
 		static public GameWorld Instance
 		{
 			get
@@ -139,11 +140,13 @@ namespace DungeonGame
 
             //These are rooms where battle encounters would start.
             //Not all monsters are created equal
-            Room battleTwoRoom = new Room.battleTwo();
+            Room battleRoom = new Room.Battle();
          
-            room3.Delegate = (IRoomDelagate)battleTwoRoom;
-
+            room3.Delegate = (IRoomDelagate)battleRoom;
+			Enemies enemy = new Enemies("Rohin", 4, 4, 4, 60,60, false);
 			
+			Enemies.AddEnemy("Rohin",enemy);
+
 
 
 			//This is where we created GItemss

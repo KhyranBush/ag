@@ -20,7 +20,7 @@
         public interface IEnemyDelagate
         {
             //Software design pattern: Delegates
-            Room EnemyContainer { get; set; }
+            Enemies EnemyContainer { get; set; }
             Enemies getEnemy(string exitName);
             string getEnemies();
         }

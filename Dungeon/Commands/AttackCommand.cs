@@ -15,7 +15,7 @@ namespace DungeonGame
         {
             if (this.hasSecondWord())
             {
-                player.start(this.secondWord);
+                player.AttackAnEnemy(this.secondWord);
             }
             else
             {

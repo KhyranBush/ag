@@ -61,6 +61,7 @@ namespace DungeonGame
 		public void start()
 		{
 			playing = true;
+			player.currentRoom = GameWorld.Instance.Lobby;	
 			player.informationMessage(welcome());
 			processCommandQueue();
 		}
@@ -77,7 +78,7 @@ namespace DungeonGame
 
 		public string welcome()
 		{
-			return "Welcome to the Tree Of Life: The Age of Ascension\n\n\nAscend to glory young hero!\n\n" +"You are currently in mental stasis, a transition between worlds, a space both in and within- exsistent yet none existent in time\n\nI Ask you only one simple question dear player..\n\nWhat is your name?" + "\n\nYou may. type 'Help' if you that is truly what you desire..\n\n" + player.currentRoom.description();
+			return "Welcome to the Tree Of Life: The Age of Ascension\n\n\nAscend to glory young hero!\n\n" + "You are currently in mental stasis, a transition between worlds, a space both in and within- exsistent yet none existent in time\n\nI Ask you only one simple question dear player..\n\nWhat is your name?" + "\n\nYou may. type 'Help' if you that is truly what you desire..\n\n";
 			
 		}
 
