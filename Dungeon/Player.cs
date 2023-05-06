@@ -10,7 +10,7 @@ namespace DungeonGame
     {
         public int coins = 0;
         public int health = 50;
-        public int damage = 1;
+        public int Damage = 1;
         public int armorVal = 0;
         public int potion = 5;
 
@@ -18,7 +18,7 @@ namespace DungeonGame
         public int experience;
         public int expCap = 50;
         public int level = 1;
-        Enemies enemy; 
+        Enemies enemy;
         public IGameItems EquippedWeapon { get; set; }
 
 
@@ -42,10 +42,10 @@ namespace DungeonGame
 
         private IGameItemsContainer inventory;
 
-        public Player(Room room) 
+        public Player(Room room)
         {
 
-          
+
             Name = "";
             inventory = new BackPack();
 
@@ -73,7 +73,7 @@ namespace DungeonGame
                 EquippedWeapon = GItem;
                 armorVal += GItem.ArmorValue;
                 health += GItem.Health;
-                damage += GItem.Damage;
+                Damage += GItem.Damage;
                 informationMessage(GItem + "Has Been Equiped!");
             }
             catch (ArgumentException ex)
@@ -93,10 +93,10 @@ namespace DungeonGame
                 EquippedWeapon = GItem;
                 armorVal -= GItem.ArmorValue;
                 health -= GItem.Health;
-                damage -= GItem.Damage;
+                Damage -= GItem.Damage;
                 inventory.put(GItem);
                 informationMessage(GItem + "Has Been unEquiped!");
-                
+
             }
             catch (ArgumentException ex)
             {
@@ -109,69 +109,219 @@ namespace DungeonGame
         }
         public void AttackAnEnemy(string Enemy)
         {
-            
+
             Enemies CombatEnemy = this._currentRoom.GetEnemy(Enemy);
-            
+            bool defeat = CombatEnemy.IsTheEnemyAliveOrNot;
+
+            warningMessage("Are you sure you want to attack? y or n");
+            string attackPrompt = Console.ReadLine();
+            Notification notification = new Notification();
+
+            string n = "";
+            int p = 0;
+            int h = 0;
+            int xp = 0;
+            int currency = 0;
 
 
-            if (CombatEnemy != null && CombatEnemy.IsTheEnemyAliveOrNot == true)
+
+            n = CombatEnemy.Name;
+            p = CombatEnemy.Power;
+            h = CombatEnemy.Health;
+            xp = CombatEnemy.Experience;
+            currency = CombatEnemy.Coins;
+            defeat = CombatEnemy.IsTheEnemyAliveOrNot;
+            Random rand = new Random();
+
+
+
+            while (defeat == false)
             {
-                int power = CombatEnemy.Power;
-                int Hlth = CombatEnemy.Health;
-                string name = Enemy;
-               
-                warningMessage(name + "is struck by your awesome power! The " + name + " strikes you back.");
-                int damage = power - armorVal;
-                if (damage < 0)
-                    damage = 0;
-                int attack = damage - power;
-                warningMessage("You lose " + damage + "  health and you dealt " + attack + " damage");
-                health -= damage;
-                Hlth -= attack;
-                if(CombatEnemy.Health == 0)
+
+
+                while (h > 0 && health > 0)
                 {
-                     CombatEnemy.IsTheEnemyAliveOrNot = false;
+                    bool run = false;
+
+                    defeat = false;
+                    //This is where we were able to make the user input for what they can do in these encounters
+                    //The plaer has 4 options: Attack, Defend, Heal,and Run
+                    Console.WriteLine("" + n);
+                    Console.WriteLine("Power level" + p + " Health level: " + h);
+                    Console.WriteLine("=====================");
+                    Console.WriteLine("|     ⚔ Attack ⚔     |");
+                    Console.WriteLine("|     ✧ Defend ✧     |");
+                    Console.WriteLine("|      ♥ Heal ♥      |");
+                    Console.WriteLine("|      ? Run ?       |");
+                    Console.WriteLine("=====================");
+                    Console.WriteLine("Potions: " + potion + " Health: " + health + " Damage Numeber: " + Damage);
+                    string input = Console.ReadLine();
+                    if (input.ToLower() == "A" || input.ToLower() == "Attack" || input.ToLower() == "a")
+                    {
+                        //Attack
+                        Console.WriteLine("Your enemy is struck by your awesome power! The " + n + " strikes you back.");
+                        int damage = p - armorVal;
+                        if (damage < 0)
+                            damage = 0;
+                        int attack = Damage - p;
+                        Console.WriteLine("You lose " + damage + "  health and you dealt " + attack + " damage");
+                        health -= damage;
+                        h -= attack;
+                        if (attack >= 0)
+                            attack = 0;
+                    }
+                    else if (input.ToLower() == "D" || input.ToLower() == "Defend" || input.ToLower() == "d")
+                    {
+                        //Defend
+                        Console.WriteLine("You raise your guard and hope to live. " + n + " strikes you and deals less damage.");
+                        int damage = (p / 4) - armorVal;
+                        if (damage < 0)
+                        {
+                            damage = 0;
+                        }
+                        int attack = rand.Next(1, Damage) / 2;
+                        Console.WriteLine("You lose " + damage + "  health and you dealt " + attack + " damage");
+                        health -= damage;
+                        h -= attack;
+                    }
+
+                    else if (input.ToLower() == "H" || input.ToLower() == "Heal" || input.ToLower() == "h")
+                    {
+                        //Heal
+                        if (potion == 0)
+                        {
+                            Console.WriteLine("You reach for a healing rune but it seems you ran out.");
+                            int damage = p - armorVal;
+                            if (damage < 0)
+                            {
+                                damage = 0;
+                            }
+                            Console.WriteLine("You took " + damage + " damage from " + n);
+                        }
+                        else
+                        {
+                            int potVal = 5;
+                            Console.WriteLine("You pulled out a healing rune and crush it in your hand.. You gained " + potVal + "health");
+                            health += potVal;
+                            Console.WriteLine("While healing " + n + " attacks you, dealing.");
+                            int damage = (p / 2) - armorVal;
+                            if (damage < 0)
+                            {
+                                damage = 0;
+                            }
+                            Console.WriteLine("You took " + damage + " damage.");
+                        }
+                        Console.ReadKey();
+                    }//Run
+                    else if (input.ToLower() == "R" || input.ToLower() == "Run" || input.ToLower() == "r")
+                    {
+                        run = true;
+                        int RunPenalty = 10;
+                        health -= RunPenalty;
+                        if (run == true)
+                        {
+                            defeat = true;
+
+                            Console.WriteLine("Why would you think you can run away? You dont wanan run into the darkness do you? fine flee like a fool!");
+                            informationMessage("You ran to the previous room, prepare for battle more thoroughly next time!");
+                            warningMessage("You have lost " + RunPenalty + " Health...");
+                            CombatEnemy.Health = 0;
+
+                            back();
+
+                        }
+
+
+                        break;
+                    }
+                    Console.ReadKey();
+                    if (h <= 0)
+                    {
+                        defeat = true;
+                    }
+
+
+                    while (health <= 0)
+                    {
+
+                        Game game = new Game();
+
+
+                        Console.WriteLine("You have lost fair player,\n\n your soul will forever be lost in ether,\n\n Maybe there will be a shot at ascension next lifetime...\n");
+
+                        game.end();
+
+
+                        break;
+                    }
+
+
+                    while (attackPrompt.Equals("n"))
+                    {
+                        back();
+                        warningMessage("\nYou have fled from an enemy SHAME ON you!\n");
+
+                    }
+                    while (defeat == true && run == false)
+                    {
+
+
+
+
+                        experience += xp;
+                        defeat = true;
+                        coins += currency;
+                        informationMessage("You have defeated" + n + "And have gained" + coins + "Coins and " + experience + " Experience");
+                        if (experience >= expCap)
+                        {
+                            LevelUp();
+                        }
+
+
+
+
+                        Console.WriteLine("\n\nYou have defeated " + n + " You recieved " + xp + " experience and " + currency + " Eliune");
+                        break;
+
+
+
+                    }
+
+                    while (defeat == true && run == true)
+                    {
+                        h = 0;
+                        defeat = true;
+                        break;
+
+                    }
+
                 }
             }
-            else if(CombatEnemy!=null && CombatEnemy.IsTheEnemyAliveOrNot == false)
-            {
-             
-                informationMessage("You have defeated" + Enemy + "You have gained\n" + CombatEnemy.Experience + "Experience\n" + CombatEnemy.Coins + "Coins\n");
-                coins += CombatEnemy.Coins;
-                experience += CombatEnemy.Experience;
-                if(experience > expCap)
-                {
-                    LevelUp();
 
-                }
-            }
-            else if(CombatEnemy == null)
-            {
-                informationMessage(CombatEnemy + "Does not exist!");
-            }
-            
-            
         }
+
+
         public void LevelUp()
         {
             if (experience > expCap)
             {
                 informationMessage("You have leveled up!");
+                level += 1;
                 expCap += 50;
                 health += 1;
-                damage += 1;
+                Damage += 1;
                 armorVal += 1;
                 coins += 10;
 
             }
         }
-       
+
         public void showStats()
         {
             //Hero hero = new Hero();
 
 
-            informationMessage("\nPlayer Stats\n" + "\nHealth:\n " + health + "\nArmor Value (AV):\n " + armorVal + "\nDamage: \n" + damage + "\nEquipped Weapon: \n" + EquippedWeapon);
+            informationMessage("\nPlayer Stats\n" + "\nHealth:\n " + health + "\nArmor Value (AV):\n " + armorVal + "\nDamage: \n" + Damage + "\nEquipped Weapon: \n" + EquippedWeapon);
         }
 
         public void showInventory()
@@ -181,7 +331,34 @@ namespace DungeonGame
             informationMessage("\nInventory.\n" + inventory.contents() + "\nCoins\n" + coins);
 
         }
+        public void ShowWares(string Merchant)
+        {
+            Merchant merchant = this._currentRoom.GetMerchant(Merchant);
+            
+            if (merchant == null)
+            {
+                warningMessage(Merchant + "is not in this room..");
 
+
+            }
+            else
+            {
+                merchant.showInventory(); 
+            }
+
+        }
+       
+       
+        public void BuyWares(string Merchant, string GitemName)
+        {
+            Merchant merchant = this._currentRoom.GetMerchant(Merchant);
+            if (merchant!= null && merchant.getItems(GitemName) != null)
+            {
+                inventory.put(merchant.getItems(GitemName));
+                merchant.RemoveItemsWhenBought(GitemName);
+                informationMessage("You have purchased " + GitemName + " From " + merchant.Name);
+            }
+        }
         public void pickup(string gameItems)
         {
 
@@ -355,10 +532,12 @@ namespace DungeonGame
 
         public void quest()
         {
-            informationMessage("Find a way to escape this dungeon before who knows what finds you!");
+            informationMessage("Ascend to the top of the tower, and find the Truth of All Truths");
         }
     }
 
 
 
 }
+
+

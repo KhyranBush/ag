@@ -13,7 +13,8 @@
         public interface IRoomDelagate
         {
             //Software design pattern: Delegates
-             Room Container { get; set; }
+             Room RoomContainer { get; set; }
+           
             Door getExit(string exitName);
             string getExits();
         }
@@ -21,8 +22,15 @@
         {
             //Software design pattern: Delegates
             Enemies EnemyContainer { get; set; }
-            Enemies getEnemy(string exitName);
+            Enemies GetEnemy(string enemyName);
             string getEnemies();
+        }
+        public interface IMerchantDelagate
+        {
+            //Software design pattern: Delegates
+            Merchant MerchantContainer { get; set; }
+            Merchant GetMerchant(string merchantName);
+            string getMerchants();
         }
         public interface IOCState
         {

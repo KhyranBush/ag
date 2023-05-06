@@ -2,18 +2,32 @@
 using static DungeonGame.Interfaces;
 using static DungeonGame.Enemies;
 using System;
+using System.ComponentModel;
 
 namespace DungeonGame
 {
 
 
-    public class Room
+    public class Room :IRoomDelagate
     {
         private Dictionary<string, Door> exits;
         private string _tag;
         private Dictionary<string, Enemies> _enemies;
+        private Dictionary<string, Merchant> _merchant;
+        private Enemies Enemy;
+        private Merchant Merchant;
+        public void setEnemy(Enemies _enemy)
+        {
+            this.Enemy = _enemy;
+        }
+        public void setMerchant(Merchant _merchant)
+        {
+            this.Merchant = _merchant;
+        }
 
-        private IRoomDelagate _delegate;
+        public Room RoomContainer { get; set; }
+        
+        private  IRoomDelagate _delegate;
 
         public IRoomDelagate Delegate
         {
@@ -26,7 +40,7 @@ namespace DungeonGame
                 _delegate = value;
                 if (_delegate != null)
                 {
-                    _delegate.Container = this;
+                    _delegate.RoomContainer = this;
                 }
             }
         }
@@ -37,10 +51,12 @@ namespace DungeonGame
         public Room(string tag = "No Tag")
         {
             _enemies = new Dictionary<string, Enemies>();
-
+            _merchant = new Dictionary<string, Merchant>(); 
             exits = new Dictionary<string, Door>();
             this.tag = tag;
             _delegate = null;
+            _Enemydelegate = null;
+            _merchantDelagate = null;
             GItemContainer = new BackPack();
         }
 
@@ -58,15 +74,13 @@ namespace DungeonGame
             }
         }
 
-        //End of Delegate section
-        //beginning of Items interfaces
+       
 
         private IGameItemsContainer GItemContainer;
 
 
 
-        //public string Tag { get; set; }
-
+        
 
         public void drop(IGameItems GItem)
         {
@@ -162,9 +176,10 @@ namespace DungeonGame
 
         //Traprooms
 
+
         public class TrapRoom : IRoomDelagate
         {
-            public Room Container { get; set; }
+            public Room RoomContainer { get; set; }
 
             public string MagicWord { set; get; }
             public Door getExit(string exitName)
@@ -174,7 +189,7 @@ namespace DungeonGame
 
             public TrapRoom()
             {
-                MagicWord = "Mario";
+                MagicWord = "GoldCoin";
                 //MagicWord = "mario";
                 NotificationCenter.Instance.addObserver("PlayerWillSayWord", PlayerWillSayWord);
             }
@@ -182,8 +197,9 @@ namespace DungeonGame
 
             public string getExits()
             {
-                return Container.getExits(this) + "\nYou cant leave until you solve this.\nWho am I?\nI jump high but I am not Michael Jordan.\nI have gloves but I am not Mickey Mouse\nI have a mustache but I am not Dr Robotnik";
-
+              Room room = this.RoomContainer;
+                room.warningMessage("\nSinister evil first beGins with an Old, antiquated Love of finances\n Dont fall into despair, Consider a first sighting of finance\n Your high Ordered Intuiton knows best...\n knowledge lasts forever Notice the lapses and similarities ascender!\n");
+                return RoomContainer.getExits(this);
             }
 
 
@@ -191,7 +207,7 @@ namespace DungeonGame
             {
 
                 Player player = (Player)notification.Object;
-                if (player.currentRoom == Container)
+                if (player.currentRoom == RoomContainer)
                 {
                     string word = (string)notification.userInfo["word"];
                     if (word != null)
@@ -199,7 +215,7 @@ namespace DungeonGame
                         if (word.Equals(MagicWord))
                         {
                             player.informationMessage("~ You did it! ~");
-                            Container.Delegate = null;
+                            RoomContainer.getExits(this);
                         }
                         else
                         {
@@ -216,7 +232,7 @@ namespace DungeonGame
 
         public class TrapRoomTwo : IRoomDelagate
         {
-            public Room Container { get; set; }
+            public Room RoomContainer { get; set; }
 
             public string MagicWord { set; get; }
             public Door getExit(string exitName)
@@ -226,14 +242,14 @@ namespace DungeonGame
 
             public TrapRoomTwo()
             {
-                MagicWord = "Gummy bear";
+                MagicWord = "Raven";
                 NotificationCenter.Instance.addObserver("PlayerWillSayWord", PlayerWillSayWord);
             }
 
 
             public string getExits()
             {
-                return Container.getExits(this) + "\nYou cant leave until you solve this.\nWhat do you call a bear with no teeth?";
+                return RoomContainer.getExits(this) + "\nWhere does the light strike from?";
 
             }
 
@@ -241,78 +257,25 @@ namespace DungeonGame
             public void PlayerWillSayWord(Notification notification)
             {
                 Player player = (Player)notification.Object;
-                if (player.currentRoom == Container)
+                if (player.currentRoom == RoomContainer)
                 {
                     string word = (string)notification.userInfo["word"];
                     if (word != null)
                     {
                         if (word.Equals(MagicWord))
                         {
+                            
                             player.informationMessage("~ You did it! ~");
-                            Container.Delegate = null;
+                            RoomContainer.Delegate = RoomContainer;
                         }
                     }
                 }
             }
 
         }
-        public class EntranceToFloorTwo : IRoomDelagate
-        {
-            public Room Container { get; set; }
 
-            public string MagicWord { set; get; }
-            public Door getExit(string exitName)
-            {
-                return null;
-            }
-
-            public EntranceToFloorTwo()
-            {
-                MagicWord = "Cain";
-                //MagicWord = "mario";
-                NotificationCenter.Instance.addObserver("PlayerWillSayWord", PlayerWillSayWord);
-            }
-
-
-            public string getExits()
-            {
-                return Container.getExits(this) + "\nJealously twists the righteous,\n\n a Shrine of understanding, forget me not,\n\n The creed and bonds of Brotherhood.. broken, an unspeakable misfortune, Killer I have been dubbed, though innocent I am...\n\n who am i?";
-
-            }
-
-
-            public void PlayerWillSayWord(Notification notification)
-            {
-
-                Player player = (Player)notification.Object;
-                if (player.currentRoom == Container)
-                {
-                    string word = (string)notification.userInfo["word"];
-                    if (word != null)
-                    {
-                        if (word.Equals(MagicWord))
-                        {
-                            player.informationMessage("~ You did it! ~");
-                            Container.Delegate = null;
-                        }
-                        else
-                        {
-                            player.informationMessage("You said the wrong word!");
-                            player.warningMessage("\n\nYou took" + 5 + "damage");
-                            player.health -= 5;
-                            player.warningMessage("\nHealth point" + player.health);
-                        }
-                    }
-                }
-            }
-
-        }
         //------------------------------------------------Enemies and Battles--------------------------------
-        private Enemies Enemy;
-        public void setEnemy(Enemies _enemy)
-        {
-            this.Enemy = _enemy;
-        }
+        
         //private Dictionary<string, Enemies> enemies;
         private IEnemyDelagate _Enemydelegate;
         public IEnemyDelagate EnemyDelegate
@@ -330,16 +293,29 @@ namespace DungeonGame
                 }
             }
         }
-        public void AddEnemy(string enemyName, Enemies enemy)//Add a room assignment?
+       
+
+        public void AddEnemy(string enemyName,int Health, int power,int coins, int exp, bool AliveorNOt)//Add a room assignment?
         {
-            _enemies[enemyName] = enemy;
+            Enemy = new Enemies(" ", 0, 0, 0, 0, 0, false);
+
+            _enemies[enemyName] = Enemy;
+            Enemy.Name += enemyName;
+            Enemy.Power += power;    
+            Enemy.Coins += coins;
+             Enemy.Experience += exp;
+            Enemy.Health += Health;
+            Enemy.IsTheEnemyAliveOrNot = AliveorNOt;
+            
+
+            
         }
 
         public Enemies GetEnemy(string enemyName)
         {
             if (_Enemydelegate != null)
             {
-                return _Enemydelegate.getEnemy(enemyName);
+                return _Enemydelegate.GetEnemy(enemyName);
             }
             else
             {
@@ -390,134 +366,105 @@ namespace DungeonGame
             }
         }
 
-        public class Battle : Room, IRoomDelagate
+        private IMerchantDelagate _merchantDelagate;
+        public IMerchantDelagate MerchantDelagate
         {
-
-            //Having problems with everything being null
-            public Room Container { get; set; }
-            public R EnemyContainer { get; set; }
-            public Enemies getEnemy(string enemyName)
+            get
             {
-                return EnemyContainer.GetEnemy(enemyName);
+              
+                return _merchantDelagate;
             }
-
-            public Door getExit(string exitName)
+            set
             {
-
-                return Container.getExit(exitName, this);
-            }
-
-
-
-            public void PlayerDidSayWord(Notification notification)
-            {
-                Player player = (Player)notification.Object;
-                if (player.currentRoom == Container)
+                _merchantDelagate = value;
+                if (_merchantDelagate != null)
                 {
+                    _merchantDelagate.MerchantContainer = Merchant;
                 }
+            }
+        }
+        public void AddMerchant(string Name)
+        {
+            
+            Merchant = new Merchant(Name);
+            _merchant[Name]= Merchant;
+            Merchant.Name = Name;
+           
+            if(Merchant == null)
+            {
+                warningMessage("critical error!");
+            }
+           
+            
+        }
+        public Merchant GetMerchant(string merchantName)
+        {
+            if (_merchantDelagate != null)
+            {
+                return _merchantDelagate.GetMerchant(merchantName);
+            }
+            else
+            {
+                return GetMerchant(merchantName, null);
+            }
+        }
+
+        public Merchant GetMerchant(string merchantName, IMerchantDelagate mDelegate)
+        {
+            if (mDelegate == MerchantDelagate)
+            {
+                Merchant merchant = Merchant;
+                _merchant.TryGetValue(merchantName, out Merchant);
+                if(_merchant == null)
+                {
+                    warningMessage("Please tell me who you're speaking of");
+                }
+                
+                return merchant;
+            }
+            else
+            {
+                return Merchant;
+            }
+        }
+
+        public string GetMerchants()
+        {
+            if (_merchantDelagate != null)
+            {
+                return _merchantDelagate.getMerchants();
+            }
+            else
+            {
+                return getMerchants(null);
+            }
+        }
+        public string getMerchants(IMerchantDelagate mDelegate)
+        {
+            if (mDelegate == _merchantDelagate)
+            {
+                string merchantNames = "Merchants in Room: ";
+                Dictionary<string, Merchant>.KeyCollection keys = _merchant.Keys;
+                foreach (string merchantName in keys)
+                {
+                    merchantNames += " " + merchantName;
+                }
+                return merchantNames;
+            }
+            else
+            {
+                return "???";
             }
         }
 
 
 
 
-        public class battleTwo : Room, IRoomDelagate
-        {
 
-            public Room Container { get; set; }
-            public Door getExit(string exitName)
-            {
-
-                return Container.getExit(exitName, this);
-            }
-            public string getExits()
-            {
-                Console.WriteLine("\nAs you walk through the dungeon You stumble upon a heap of armor");
-                Console.WriteLine("\nIt assembles as it looks in your direction and mystic black mist flows from its helm ....");
-                Console.WriteLine("\nIt rusheds toward you filled with the intent to destroy, Now is the time for action, fight young hero!");
-                Console.ReadKey();
-
-
-
-
-                return Container.getExits(this) + "\n~ Battle complete. The exits are shown now~\n";
-
-            }
-            public void PlayerDidSayWord(Notification notification)
-            {
-                Player player = (Player)notification.Object;
-                if (player.currentRoom == Container)
-                {
-                }
-            }
-        }
-
-        public class battleThree : Room, IRoomDelagate
-        {
-
-
-            public Room Container { get; set; }
-            public Door getExit(string exitName)
-            {
-
-                return Container.getExit(exitName, this);
-            }
-            public string getExits()
-            {
-                Console.WriteLine("\nLooks like you've stumbled upon another enemy...");
-                Console.WriteLine("\nThis is a brute known only for destruction and violence!");
-                Console.WriteLine("\nVictory is slim and death is almost certain as you fight the...");
-                Console.ReadKey();
-
-
-
-
-                return Container.getExits(this) + "\n~ Battle complete. The exits are shown now~\n";
-
-            }
-            public void PlayerDidSayWord(Notification notification)
-            {
-                Player player = (Player)notification.Object;
-                if (player.currentRoom == Container)
-                {
-                }
-            }
-        }
-
-        public class finalBattle : Room, IRoomDelagate
-        {
-
-
-            public Room Container { get; set; }
-            public Door getExit(string exitName)
-            {
-
-                return Container.getExit(exitName, this);
-            }
-            public string getExits()
-            {
-                Console.WriteLine("\nLooks like you've stumbled upon another enemy...");
-                Console.WriteLine("\nAkuma has been looking for a worthy challenge.");
-                Console.WriteLine("\nDeath is almost certainly assured");
-                Console.ReadKey();
-
-
-
-                return Container.getExits(this) + "\n~ Battle complete. The exits are shown now~\n";
-
-            }
-            public void PlayerDidSayWord(Notification notification)
-            {
-                Player player = (Player)notification.Object;
-                if (player.currentRoom == Container)
-                {
-                }
-            }
-        }
         public class EndRoom : IRoomDelagate
         {
 
-            public Room Container { get; set; }
+            public Room RoomContainer { get; set; }
 
             public Door getExit(string exitName)
             {
@@ -531,41 +478,42 @@ namespace DungeonGame
 
             public string getExits()
             {
-                return Container.getExits(this) + "\n*** You Win! ***" + "\nYou can type 'Quit' to leave.";
+                return RoomContainer.getExits(this) + "\n*** You Win! ***" + "\nYou can type 'Quit' to leave.";
             }
-            //----------------------------Room Message Types----------------------------------------------
-            public void outputMessage(string message)
-            {
-                Console.WriteLine(message);
-            }
-
-            public void coloredMessage(string message, ConsoleColor color)
-            {
-                ConsoleColor oldColor = Console.ForegroundColor;
-                Console.ForegroundColor = color;
-                outputMessage(message);
-                Console.ForegroundColor = oldColor;
-            }
-
-            public void debugMessage(string message)
-            {
-                coloredMessage(message, ConsoleColor.DarkRed);
-            }
-
-            public void warningMessage(string message)
-            {
-                coloredMessage(message, ConsoleColor.Red);
-            }
-
-            public void informationMessage(string message)
-            {
-                coloredMessage(message, ConsoleColor.Yellow);
-            }
-
+          
+        }
+        //----------------------------Room Message Types----------------------------------------------
+        public void outputMessage(string message)
+        {
+            Console.WriteLine(message);
         }
 
+        public void coloredMessage(string message, ConsoleColor color)
+        {
+            ConsoleColor oldColor = Console.ForegroundColor;
+            Console.ForegroundColor = color;
+            outputMessage(message);
+            Console.ForegroundColor = oldColor;
+        }
 
+        public void debugMessage(string message)
+        {
+            coloredMessage(message, ConsoleColor.DarkRed);
+        }
 
+        public void warningMessage(string message)
+        {
+            coloredMessage(message, ConsoleColor.Red);
+        }
+
+        public void informationMessage(string message)
+        {
+            coloredMessage(message, ConsoleColor.Yellow);
+        }
 
     }
+
+
+
+
 }

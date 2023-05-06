@@ -1,39 +1,48 @@
-1). Simplify the code so you can understand it!
+1). Simplify the code so you can understand it! (Simplified as of 1.3)
 
 2). Make weapons Equipable (works as of patch 1.2)
 
 3). Fix the back command (works as of patch 1.2)
 
-4). try to add a function for the decorator pattern 
 
-5). Polish as much as possible
+4). Polish as much as possible
 
-6). Try some challenges!
-	Particularly the teleporter. 
+5). Try some challenges!
+	Particularly the teleporter. 0
 	Parser and multi word responses
-	wear and use armor 
-	merchant 
-	Make the merchant move around randomly between a fixed number of rooms (this is gonna be tough)
-	battle system
+	wear and use armor (1.1)
+	merchant (1.2)
 	
+	battle system (1.0)
 	
+	1.0 - Character Battle Command System
+		Systems allows player to interact with enemies
+		Enemy dies- plaayer gains exp and coins
+		Will be used in implementation of a Merchant
 	Update 1.1 - Implemented new feature: character weapons handling:
 		Error: Cannot figure out how to equip them!  
 	Update 1.12 Currently bug fixing, It may work now but i am not sure
-	implement a equiped items command So we can see whats going on!
+		implement a equiped items command So we can see whats going on!
 	Major Update patch 1.2 
-	Huge game fixes in code readability and cohesion 
-	Fixed many problems with incohesive code
-	No longer a Hero class
-	encounters does not handle enemies and players together anymore
-	Players does everything a player should do
+		Huge game fixes in code readability and cohesion 
+		Fixed many problems with incohesive code
+		No longer a Hero class
+		encounters does not handle enemies and players together anymore
+		Players does everything a player should do
 	
-	To do:
-		Make the new enemy module initialize the combat sequence when an npc is detected
-		Add a merchant and make sure the enemies are dropping coins!
-		Make sure the character is leveling up after a fight
-		Fix trap rooms 
-		Finally add the teleporter!
+		To do:
+			Make the new enemy module initialize the combat sequence when an npc is detected
+			Add a merchant and make sure the enemies are dropping coins!
+			Make sure the character is leveling up after a fight
+				Fix trap rooms 
+			Finally add the teleporter!
+	Update 1.2 - Implemented Merchants!
+		ERROR: merchants are not in the rooms!
+	Update 1.3 - Fixed Merchant issues
+		Added buy and show commands
+	Update 1.4 Final presentation polish
+
+
 
 
 

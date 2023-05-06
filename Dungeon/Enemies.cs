@@ -16,7 +16,7 @@ namespace DungeonGame
         public int Damage = 1;
         public int Power = 1;
         public int Experience;
-        public bool IsTheEnemyAliveOrNot;
+        public bool IsTheEnemyAliveOrNot = false;
         public Player Player;
         //private Room RoomEnemyIsLocated;
 

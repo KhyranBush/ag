@@ -7,8 +7,8 @@ namespace DungeonGame
 
 {
 
-    //This is where we used the software design pattern : State.
-    //This is also used to open and shut doors if we so chose top.
+    //This is where  the software design pattern : State.
+    //This is also where i open and shut doors if i chose top.
     public enum OCState { Open, Closed }
     public class Door : IOCState
     {
@@ -90,7 +90,7 @@ namespace DungeonGame
             room2.setExit(label2, door);
             return door;
         }
-        public static Door CreateLockedDoor(Room room1, Room room2, string label1, string label2, string keyname)
+        public Door CreateLockedDoor(Room room1, Room room2, string label1, string label2, string keyname)
         {
             Door door = new Door(room1, room2, keyname);
             door.close();

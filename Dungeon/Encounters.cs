@@ -1,9 +1,14 @@
-﻿using System;using System.Numerics;
+﻿using System;
+using System.Numerics;
 using System.Runtime.CompilerServices;
-using System.Xml.XPath;namespace DungeonGame{
+using System.Xml.XPath;
+
+namespace DungeonGame
+{
     //This is where we have the combat encounters in the game. Their are a total of 4 combat encounters (2 on each floor)
     //Different encounters offer different challenges and they each have their own set of health and damage they can deal.
-    public class Encounters    {
+    public class Encounters
+    {
         private Player player;
         private Enemies enemy;
         public Encounters(Player player, Enemies enemy)
@@ -11,7 +16,8 @@ using System.Xml.XPath;namespace DungeonGame{
             this.player = player;
             this.enemy = enemy;
         }
-        public bool IsDefeated { get; set; }     
+        public bool IsDefeated { get; set; }
+     
             public  void PlayerCombat(Player player, Enemies enemy)
             {
             Game game = new Game();
@@ -53,7 +59,7 @@ using System.Xml.XPath;namespace DungeonGame{
                         Console.WriteLine("|      ♥ Heal ♥      |");
                         Console.WriteLine("|      ? Run ?       |");
                         Console.WriteLine("=====================");
-                        Console.WriteLine("Potions: " + this.player.potion + " Health: " + this.player.health + " Health: " + this.player.damage + this.player.EquippedWeapon.Damage);
+                        Console.WriteLine("Potions: " + this.player.potion + " Health: " + this.player.health + " Health: " + this.player.Damage + this.player.EquippedWeapon.Damage);
                         string input = Console.ReadLine();
                         if (input.ToLower() == "A" || input.ToLower() == "Attack" || input.ToLower() == "a")
                         {
@@ -62,7 +68,7 @@ using System.Xml.XPath;namespace DungeonGame{
                             int damage = p - this.player.armorVal;
                             if (damage < 0)
                                 damage = 0;
-                            int attack = this.player.damage - p;
+                            int attack = this.player.Damage - p;
                             Console.WriteLine("You lose " + damage + "  health and you dealt " + attack + " damage");
                             player.health -= damage;
                             h -= attack;
@@ -76,7 +82,7 @@ using System.Xml.XPath;namespace DungeonGame{
                             {
                                 damage = 0;
                             }
-                            int attack = rand.Next(1, this.player.damage) / 2;
+                            int attack = rand.Next(1, this.player.Damage) / 2;
                             Console.WriteLine("You lose " + damage + "  health and you dealt " + attack + " damage");
                             this.player.health -= damage;
                             h -= attack;
@@ -171,4 +177,6 @@ using System.Xml.XPath;namespace DungeonGame{
         
             
     }
-}
+}
+
+
